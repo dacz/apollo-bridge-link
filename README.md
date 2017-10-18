@@ -2,7 +2,7 @@
 
 When you don't have GraphQL server (yet) and want to use GraphQL on the client.
 
-Use your own resolvers to non-graphql endpoints (like REST API etc.).
+Use your own resolvers to non-graphql endpoints (like REST API, querying filesystem in electron app etc.).
 
 [![current version](https://img.shields.io/npm/v/apollo-bridge-link.svg?style=flat-square)](https://www.npmjs.com/package/apollo-bridge-link)
 [![travis.ci](https://img.shields.io/travis/dacz/apollo-bridge-link.svg?style=flat-square)](https://travis-ci.org/dacz/apollo-bridge-link)
