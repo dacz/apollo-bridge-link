@@ -1,8 +1,7 @@
 {
   "name": "apollo-bridge-link",
   "version": "0.0.0-development",
-  "description":
-    "When you don't have GraphQL server (yet) and want to use GraphQL on the client.",
+  "description": "When you don't have GraphQL server (yet) and want to use GraphQL on the client.",
   "main": "lib/index.js",
   "scripts": {
     "cm": "git-cz",
@@ -10,22 +9,24 @@
     "lint": "eslint ./src",
     "test": "cross-env NODE_ENV=test nyc ava",
     "clean": "rimraf lib coverage",
-    "build:commonjs":
-      "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore test.js",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore test.js",
     "build": "npm run clean && npm run build:commonjs",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "test:watch": "cross-env NODE_ENV=test ava --watch -v",
     "precommit": "npm run lint && npm test",
     "prepush": "npm run lint && npm test",
-    "semantic-release":
-      "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "dacz",
   "license": "MIT",
   "repository": "https://github.com/dacz/apollo-bridge-link",
   "ava": {
-    "files": ["src/**/*.test.js"],
-    "require": ["babel-core/register"],
+    "files": [
+      "src/**/*.test.js"
+    ],
+    "require": [
+      "babel-core/register"
+    ],
     "babel": "inherit"
   },
   "devDependencies": {
@@ -60,5 +61,8 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "files": ["src/", "lib/"]
+  "files": [
+    "src/",
+    "lib/"
+  ]
 }
