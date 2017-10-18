@@ -46,7 +46,7 @@
     "eslint-config-dacz": "^0.13.3",
     "husky": "^0.14.3",
     "nyc": "^11.2.1",
-    "semantic-release": "^8.0.3",
+    "semantic-release": "^8.2.0",
     "sinon": "^4.0.1"
   },
   "dependencies": {
