@@ -8,6 +8,7 @@ Use your own resolvers to non-graphql endpoints (like REST API, querying filesys
 [![travis.ci](https://img.shields.io/travis/dacz/apollo-bridge-link.svg?style=flat-square)](https://travis-ci.org/dacz/apollo-bridge-link)
 [![codecov](https://codecov.io/gh/dacz/apollo-bridge-link/branch/master/graph/badge.svg)](https://codecov.io/gh/dacz/apollo-bridge-link)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dacz/apollo-bridge-link.svg)](https://greenkeeper.io/)
+[![license](https://img.shields.io/github/license/dacz/apollo-bridge-link.svg)](https://github.com/dacz/apollo-bridge-link/blob/master/LICENSE)
 
 
 ## Idea
