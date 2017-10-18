@@ -1,0 +1,24 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+node_js:
+  - '8'
+before_install:
+  - npm install -g greenkeeper-lockfile@1
+before_script:
+  - npm prune
+  - greenkeeper-lockfile-update
+script:
+  - npm run lint
+  - npm run test
+  - npm run build
+after_script: greenkeeper-lockfile-upload
+after_success:
+  - npm run semantic-release
+  - npm run report-coverage
+branches:
+  only:
+    - master
