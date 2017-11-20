@@ -43,7 +43,7 @@
     "cross-env": "^5.0.5",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^4.5.0",
-    "eslint-config-dacz": "^1.0.1",
+    "eslint-config-dacz": "^2.0.0",
     "husky": "^0.14.3",
     "nyc": "^11.2.1",
     "semantic-release": "^8.2.0",
