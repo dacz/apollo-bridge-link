@@ -29,6 +29,9 @@
     ],
     "babel": "inherit"
   },
+  "browserslist": [
+    "> 3%"
+  ],
   "devDependencies": {
     "apollo-cache-inmemory": "^1.0.0",
     "apollo-client": "^2.0.0-beta.8",

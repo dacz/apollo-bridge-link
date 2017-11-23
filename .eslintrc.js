@@ -1,4 +1,6 @@
 module.exports = {
   extends: 'dacz',
-  rules: {},
+  rules: {
+  	"compat/compat": 0
+  },
 };
