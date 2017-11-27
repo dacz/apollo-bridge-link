@@ -17,7 +17,7 @@ export const createBridgeLink = ({ schema, resolvers, mock, context = {} }) => {
     executableSchema = schema;
   } else {
     throw new Error(
-      'schema should be plain text, parsed schema or executable schema.'
+      'schema should be plain text, parsed schema or executable schema'
     );
   }
 
