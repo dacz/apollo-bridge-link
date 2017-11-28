@@ -35,7 +35,7 @@
   "devDependencies": {
     "apollo-cache-inmemory": "^1.0.0",
     "apollo-client": "^2.0.0-beta.8",
-    "ava": "^0.23.0",
+    "ava": "^0.24.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
