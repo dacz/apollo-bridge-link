@@ -53,18 +53,24 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import schema from './schema';
 
 // your resolvers (see example)
-import reolvers from './resolvers';
+import resolvers from './resolvers';
 
 // if you want to mock anything in the schema (that has not resolver or doesn't return data)
 const mock = true;
 
 // if you want to push something down to the resolvers in context
 const context = {
-  graphQl: 'is cool'
-}
+  graphQl: 'is cool',
+};
+
+// do something with actual context and operation of gql operation
+// and return object that will be shallow merged to context
+// use for init dataloader with token for example
+// see example... https://github.com/dacz/apollo-bridge-link-example
+const contextware = (ctx, operation) => ({ inContext: 'from contextware' });
 
 export const client = new ApolloClient({
-  link: BridgeLink({ schema, resolvers, mock, context });
+  link: BridgeLink({ schema, resolvers, mock, context, contextware });
   cache: new InMemoryCache({ addTypename: true }),
 });
 ```

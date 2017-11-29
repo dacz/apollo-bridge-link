@@ -4,7 +4,13 @@ import { addMockFunctionsToSchema, makeExecutableSchema } from 'graphql-tools';
 import { ApolloLink } from 'apollo-link';
 import Observable from 'zen-observable';
 
-export const createBridgeLink = ({ schema, resolvers, mock, context = {} }) => {
+export const createBridgeLink = ({
+  schema,
+  resolvers,
+  mock,
+  context = {},
+  contextware = [],
+}) => {
   let executableSchema;
   if (typeof schema === 'string') {
     executableSchema = makeExecutableSchema({ typeDefs: schema, resolvers });
@@ -31,11 +37,19 @@ export const createBridgeLink = ({ schema, resolvers, mock, context = {} }) => {
     operation =>
       new Observable(observer => {
         const { headers, credentials } = operation.getContext();
-        const ctx = {
+        const ctxInitial = {
           ...context,
           headers,
           credentials,
         };
+
+        // contextware
+        const ctx = [].concat(contextware).reduce((acc, fn) => {
+          const rv = fn(acc, operation);
+          return typeof rv === 'object' && !Array.isArray(rv)
+            ? { ...acc, ...rv }
+            : acc;
+        }, ctxInitial);
 
         graphql(
           executableSchema,

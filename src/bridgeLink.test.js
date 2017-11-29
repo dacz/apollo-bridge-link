@@ -86,6 +86,23 @@ test('BridgeLink mocks data', async t => {
   t.truthy(res.data.posts[0].author.id, 'should have mocked author');
 });
 
+test('BridgeLink calls contextware', async t => {
+  const returning = { middle: 'data' };
+  const init = sinon.mock().returns(returning);
+  const opts = {
+    schema: schemaExample,
+    mock: true,
+    contextware: init,
+  };
+  const link = new BridgeLink(opts);
+  const cache = new InMemoryCache();
+  const client = new ApolloClient({ link, cache });
+  const res = await client.query({ query: POSTS });
+  t.true(res.data.posts.length > 0, 'should get some mocked data');
+  t.truthy(res.data.posts[0].author.id, 'should have mocked author');
+  t.true(init.calledOnce);
+});
+
 test('BridgeLink should accept executable schema', async t => {
   const posts = [
     {
@@ -170,7 +187,7 @@ test('createBridgeLink - creates link', t => {
   const schema = schemaExample;
   const resolvers = {};
   const mock = false;
-  const context = {};
+  const context = { gq: 'is cool' };
   const link = createBridgeLink({ schema, resolvers, mock, context });
   t.true(link instanceof ApolloLink);
 });
