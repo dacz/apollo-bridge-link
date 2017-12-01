@@ -4,6 +4,8 @@ When you don't have GraphQL server (yet) and want to use GraphQL on the client.
 
 [_Demo: working example with source code and server._](https://github.com/dacz/apollo-bridge-link-example)
 
+[_Article about how to use it with dataloaders and authentication._](https://medium.com/@dadc/using-graphql-client-with-rest-api-9c332e5c8eb3)
+
 Use your own resolvers to non-graphql endpoints (like REST API, querying
 filesystem in electron app etc.).
 
