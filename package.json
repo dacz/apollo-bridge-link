@@ -1,8 +1,7 @@
 {
   "name": "apollo-bridge-link",
   "version": "0.0.0-development",
-  "description":
-    "When you don't have GraphQL server (yet) and want to use GraphQL on the client.",
+  "description": "When you don't have GraphQL server (yet) and want to use GraphQL on the client.",
   "main": "lib/index.js",
   "scripts": {
     "cm": "git-cz",
@@ -10,8 +9,7 @@
     "lint": "eslint ./src",
     "test": "cross-env NODE_ENV=test nyc ava",
     "clean": "rimraf lib coverage",
-    "build:commonjs":
-      "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore test.js",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore test.js",
     "build": "npm run clean && npm run build:commonjs",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "test:watch": "cross-env NODE_ENV=test ava --watch -v",
@@ -23,42 +21,51 @@
   "license": "MIT",
   "repository": "https://github.com/dacz/apollo-bridge-link",
   "ava": {
-    "files": ["src/**/*.test.js"],
-    "require": ["babel-core/register"],
+    "files": [
+      "src/**/*.test.js"
+    ],
+    "require": [
+      "babel-core/register"
+    ],
     "babel": "inherit"
   },
-  "browserslist": ["> 3%"],
+  "browserslist": [
+    "> 3%"
+  ],
   "devDependencies": {
-    "apollo-cache-inmemory": "^1.0.0",
-    "apollo-client": "^2.0.0-beta.8",
+    "apollo-cache-inmemory": "^1.1.4",
+    "apollo-client": "^2.0.4",
     "ava": "^0.24.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
     "codecov": "^3.0.0",
     "commitizen": "^2.9.6",
-    "cross-env": "^5.0.5",
-    "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^4.5.0",
-    "eslint-config-dacz": "^3.0.0",
+    "cross-env": "^5.1.3",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.14.0",
+    "eslint-config-dacz": "^3.0.1",
     "husky": "^0.14.3",
-    "nyc": "^11.2.1",
+    "nyc": "^11.4.1",
     "semantic-release": "^11.0.2",
-    "sinon": "^4.0.1"
+    "sinon": "^4.1.3"
   },
   "dependencies": {
-    "apollo-link": "^1.0.0",
-    "graphql": "^0.12.0",
-    "graphql-tag": "^2.4.2",
-    "graphql-tools": "^2.5.0",
-    "zen-observable": "^0.7.0"
+    "apollo-link": "^1.0.7",
+    "graphql": "^0.12.3",
+    "graphql-tag": "^2.6.1",
+    "graphql-tools": "^2.14.1",
+    "zen-observable": "^0.7.1"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "files": ["src/", "lib/"]
+  "files": [
+    "src/",
+    "lib/"
+  ]
 }
