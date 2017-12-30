@@ -63,12 +63,21 @@ test('BridgeLink calls deep resolver', async t => {
         author: sinon.stub().returns(Promise.resolve(author)),
       },
     },
+    context: {
+      GraphQl: 'isCool',
+      headers: {
+        'X-hulu': 'sun',
+      },
+    },
   };
   const link = new BridgeLink(opts);
   const cache = new InMemoryCache();
   const client = new ApolloClient({ link, cache });
   const res = await client.query({ query: POSTS });
   t.true(opts.resolvers.Post.author.calledOnce);
+  const calledWithContext = opts.resolvers.Post.author.args[0][2];
+  t.is(calledWithContext.GraphQl, opts.context.GraphQl);
+  t.is(calledWithContext.headers['X-hulu'], opts.context.headers['X-hulu']);
   t.deepEqual(res.data.posts[0].author, authorReturned);
   t.pass();
 });

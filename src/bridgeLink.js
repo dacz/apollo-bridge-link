@@ -39,7 +39,9 @@ export const createBridgeLink = ({
         const { headers, credentials } = operation.getContext();
         const ctxInitial = {
           ...context,
-          headers,
+          ...(context.headers || headers
+            ? { headers: { ...context.headers, ...headers } }
+            : {}),
           credentials,
         };
 
