@@ -7,6 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { POSTS } from '../testUtils/queries.example';
 import { makeExecutableSchema } from 'graphql-tools';
 import schemaExample from '../testUtils/schema.example';
+import { setContext } from 'apollo-link-context';
 import sinon from 'sinon';
 import test from 'ava';
 
@@ -53,6 +54,12 @@ test('BridgeLink calls deep resolver', async t => {
     },
   ];
   const authorReturned = { ...author, __typename: 'User' };
+  const context = {
+    GraphQl: 'isCool',
+    headers: {
+      'X-hulu': 'sun',
+    },
+  };
   const opts = {
     schema: schemaExample,
     resolvers: {
@@ -63,23 +70,22 @@ test('BridgeLink calls deep resolver', async t => {
         author: sinon.stub().returns(Promise.resolve(author)),
       },
     },
-    context: {
-      GraphQl: 'isCool',
-      headers: {
-        'X-hulu': 'sun',
-      },
-    },
   };
-  const link = new BridgeLink(opts);
+  const contextLink = setContext(() => context);
+  const bridgeLink = new BridgeLink(opts);
   const cache = new InMemoryCache();
-  const client = new ApolloClient({ link, cache });
+  const client = new ApolloClient({
+    link: contextLink.concat(bridgeLink),
+    cache,
+  });
   const res = await client.query({ query: POSTS });
   t.true(opts.resolvers.Post.author.calledOnce);
-  const calledWithContext = opts.resolvers.Post.author.args[0][2];
-  t.is(calledWithContext.GraphQl, opts.context.GraphQl);
-  t.is(calledWithContext.headers['X-hulu'], opts.context.headers['X-hulu']);
   t.deepEqual(res.data.posts[0].author, authorReturned);
-  t.pass();
+
+  // keeps context as is
+  const calledWithContext = opts.resolvers.Post.author.args[0][2];
+  t.is(calledWithContext.GraphQl, context.GraphQl);
+  t.is(calledWithContext.headers['X-hulu'], context.headers['X-hulu']);
 });
 
 test('BridgeLink mocks data', async t => {
@@ -93,23 +99,6 @@ test('BridgeLink mocks data', async t => {
   const res = await client.query({ query: POSTS });
   t.true(res.data.posts.length > 0, 'should get some mocked data');
   t.truthy(res.data.posts[0].author.id, 'should have mocked author');
-});
-
-test('BridgeLink calls contextware', async t => {
-  const returning = { middle: 'data' };
-  const init = sinon.mock().returns(returning);
-  const opts = {
-    schema: schemaExample,
-    mock: true,
-    contextware: init,
-  };
-  const link = new BridgeLink(opts);
-  const cache = new InMemoryCache();
-  const client = new ApolloClient({ link, cache });
-  const res = await client.query({ query: POSTS });
-  t.true(res.data.posts.length > 0, 'should get some mocked data');
-  t.truthy(res.data.posts[0].author.id, 'should have mocked author');
-  t.true(init.calledOnce);
 });
 
 test('BridgeLink should accept executable schema', async t => {
