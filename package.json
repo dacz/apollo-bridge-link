@@ -51,7 +51,7 @@
     "eslint-config-dacz": "^3.1.0",
     "husky": "^0.14.3",
     "nyc": "^11.4.1",
-    "semantic-release": "^12.2.2",
+    "semantic-release": "^15.10.5",
     "sinon": "^4.1.5",
     "travis-deploy-once": "^4.3.1"
   },
