@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "apollo-link": "^1.0.7",
-    "graphql": "^0.13.0",
+    "graphql": "^14.1.1",
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.18.0",
     "zen-observable": "^0.8.0"
