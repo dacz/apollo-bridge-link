@@ -37,7 +37,7 @@
     "apollo-cache-inmemory": "^1.1.5",
     "apollo-client": "^2.2.0",
     "apollo-link-context": "^1.0.3",
-    "ava": "^0.25.0",
+    "ava": "^2.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
