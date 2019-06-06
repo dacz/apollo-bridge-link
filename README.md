@@ -1,3 +1,7 @@
+# NOT MAINTAINED ANYMORE
+
+----
+
 # Apollo Bridge Link
 
 When you don't have GraphQL server (yet) and want to use GraphQL on the client.
